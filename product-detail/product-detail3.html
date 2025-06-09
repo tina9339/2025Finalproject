@@ -36,9 +36,15 @@
     </div>
   </main>
 
-  <section class="review-section">
+ <section class="review-section">
     <h3>評論與評分</h3>
-    <p>（此區即將開放留言與評分功能）</p>
+
+    <div id="reviewList" class="review-list"></div>
+
+    <div class="review-form">
+      <textarea id="reviewInput" placeholder="留下你的評論吧..."></textarea>
+      <button onclick="addReview()">送出評論</button>
+    </div>
   </section>
 
   <footer class="footer">
@@ -52,6 +58,63 @@
       image: '/img/S__267386915.jpg',
       quantity: 1
     };
+    const productId = 'Azrael';
+    const reviewKey = 'reviews_' + productId;
+
+    // 若沒有評論時預設幾句
+    function getInitialReviews() {
+      return [
+        "他笑得像天使，說話卻像在詛咒我。",
+        "我以為他是溫柔系，沒想到內心深不見底……好喜歡。",
+        "阿茲瑞爾是唯一一個說『你很好』會讓我想哭的人。",
+        "白切黑代表人物，我明知道他危險，卻還是想靠近。",
+        "他輕聲在我耳邊說『你是我的神選』，我就信了。",
+        "這不是戀愛，是墜落神域，我自願成為他信徒。"
+      ];
+    }
+
+    function loadReviews() {
+      const list = document.getElementById('reviewList');
+      let reviews = JSON.parse(localStorage.getItem(reviewKey));
+
+      // 若沒有則給預設值（但只做一次）
+      if (!reviews) {
+        reviews = getInitialReviews();
+        localStorage.setItem(reviewKey, JSON.stringify(reviews));
+      }
+
+      list.innerHTML = '';
+      reviews.forEach((text, index) => {
+      const div = document.createElement('div');
+      div.className = 'review-item';
+      div.innerHTML = `
+        <span class="review-text">🗨️ ${text}</span>
+        <button onclick="deleteReview(${index})" class="delete-btn">刪除</button>
+      `;
+      list.appendChild(div);
+      });
+    }
+
+    function addReview() {
+      const input = document.getElementById('reviewInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      let reviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
+      reviews.push(text);
+      localStorage.setItem(reviewKey, JSON.stringify(reviews));
+      input.value = '';
+      loadReviews();
+    }
+
+    function deleteReview(index) {
+      let reviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
+      reviews.splice(index, 1);
+      localStorage.setItem(reviewKey, JSON.stringify(reviews));
+      loadReviews();
+    }
+
+    loadReviews();
   </script>
 </body>
 </html>

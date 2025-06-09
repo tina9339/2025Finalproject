@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>會員資料</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #fefefb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+      background-color: #fffefc;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.5rem;
+      color: #3a3a3a;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+
+    .info p, .record li {
+      margin: 0.5rem 0;
+    }
+
+    ul.record {
+      padding-left: 1.2rem;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #5e5e5e;
+    }
+
+    .value {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>會員基本資料</h2>
+    <div class="info">
+      <p><span class="label">姓名：</span><span class="value">王小明</span></p>
+      <p><span class="label">Email：</span><span class="value">ming@example.com</span></p>
+      <p><span class="label">電話：</span><span class="value">0912-345-678</span></p>
+    </div>
+
+    <div class="section">
+      <h2>歷史消費紀錄</h2>
+      <ul class="record">
+        <li>2025/06/01 - 購買「典獄長」 - $10</li>
+        <li>2025/06/03 - 購買「教授」 - $9999</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>評論與評分紀錄</h2>
+      <ul class="record">
+        <li>對「典獄長」給予 ⭐⭐⭐⭐⭐：「超值爆炸！」</li>
+        <li>對「教授」給予 ⭐⭐⭐：「太貴了，但還行」</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

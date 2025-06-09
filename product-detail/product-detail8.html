@@ -58,19 +58,40 @@
       quantity: 1
     };
 
-    const productId = 'jiyaocing'; // 每個商品一個唯一 ID
+    const productId = 'jiyaocing';
     const reviewKey = 'reviews_' + productId;
+
+    // 若沒有評論時預設幾句
+    function getInitialReviews() {
+      return [
+        "她讓我滾出去，但我只想滾到她心裡。",
+        "什麼叫攻氣滿點，看她一眼我就不想反抗了。",
+        "不接受溫柔，因為她本身就夠烈。",
+        "紀總罵我，我卻覺得被讚美了。",
+        "那雙高跟鞋一踏地，我魂都飛了。",
+        "她說：『下次再犯，就別來了。』我：『我保證天天犯。』"
+      ];
+    }
 
     function loadReviews() {
       const list = document.getElementById('reviewList');
-      const reviews = JSON.parse(localStorage.getItem(reviewKey)) || [
+      let reviews = JSON.parse(localStorage.getItem(reviewKey));
 
-      ];
+      // 若沒有則給預設值（但只做一次）
+      if (!reviews) {
+        reviews = getInitialReviews();
+        localStorage.setItem(reviewKey, JSON.stringify(reviews));
+      }
+
       list.innerHTML = '';
-      reviews.forEach(text => {
-        const p = document.createElement('p');
-        p.textContent = '🗨️ ' + text;
-        list.appendChild(p);
+      reviews.forEach((text, index) => {
+      const div = document.createElement('div');
+      div.className = 'review-item';
+      div.innerHTML = `
+        <span class="review-text">🗨️ ${text}</span>
+        <button onclick="deleteReview(${index})" class="delete-btn">刪除</button>
+      `;
+      list.appendChild(div);
       });
     }
 
@@ -78,10 +99,18 @@
       const input = document.getElementById('reviewInput');
       const text = input.value.trim();
       if (!text) return;
+
       let reviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
       reviews.push(text);
       localStorage.setItem(reviewKey, JSON.stringify(reviews));
       input.value = '';
+      loadReviews();
+    }
+
+    function deleteReview(index) {
+      let reviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
+      reviews.splice(index, 1);
+      localStorage.setItem(reviewKey, JSON.stringify(reviews));
       loadReviews();
     }
 
