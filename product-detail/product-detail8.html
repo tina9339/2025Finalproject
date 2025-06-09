@@ -8,29 +8,28 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="logo"><a href="../index.html">文青選品</a></div>
+    <div class="logo"><a href="../index.html">未語知念</a></div>
     <nav>
       <ul class="menu">
         <li><a href="../index.html">首頁</a></li>
-        <li><a href="#">上衣</a></li>
-        <li><a href="#">褲子</a></li>
-        <li><a href="#">配件</a></li>
+        <li><a href="#">全新推出</a></li>
+        <li><a href="#">熱門推薦</a></li>
+        <li><a href="#">獨特愛好</a></li>
         <li><a href="#">登入</a></li>
-        <li><a href="cart.html">購物車</a></li>
+        <li><a href="../cart.html">購物車</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="product-detail">
     <div class="product-images">
-      <img src="img/S__267386896_0.jpg" alt="商品主圖" />
-      <img src="img/S__267386896_0.jpg" alt="商品圖2" />
+      <img src="../img/S__267386924.jpg" alt="商品主圖" />
     </div>
 
     <div class="product-info">
-      <h2>高冷學長 $0</h2>
-      <p class="price">高冷你的愛~快來熱臉貼冷屁股ww</p>
-      <p class="desc">冷戰冷起來~你愛了嗎😘</p>
+      <h2>紀瑤晴（女霸總） $4000</h2>
+      <p class="price">她不屑一顧地翹著腿，說「感情是沒效率的投資」。</p>
+      <p class="desc">如果她終於對你說一句：『下班後留下。』你，還逃得掉嗎？</p>
       <button class="add-to-cart" id="addToCart">加入購物車</button>
       <script src="../cart.js"></script>
     </div>
@@ -38,11 +37,55 @@
 
   <section class="review-section">
     <h3>評論與評分</h3>
-    <p>（此區即將開放留言與評分功能）</p>
+
+    <div id="reviewList" class="review-list"></div>
+
+    <div class="review-form">
+      <textarea id="reviewInput" placeholder="留下你的評論吧..."></textarea>
+      <button onclick="addReview()">送出評論</button>
+    </div>
   </section>
 
   <footer class="footer">
-    <p>© 2025 文青風生活選品店</p>
+    <p>© 2025 懂你所思，聽你未語。</p>
   </footer>
+  <script>
+    const product = {
+      id: 'jiyaocing',
+      name: '紀瑤晴',
+      price: 4000,
+      image: '../img/S__267386924.jpg',
+      quantity: 1
+    };
+
+    const productId = 'jiyaocing'; // 每個商品一個唯一 ID
+    const reviewKey = 'reviews_' + productId;
+
+    function loadReviews() {
+      const list = document.getElementById('reviewList');
+      const reviews = JSON.parse(localStorage.getItem(reviewKey)) || [
+
+      ];
+      list.innerHTML = '';
+      reviews.forEach(text => {
+        const p = document.createElement('p');
+        p.textContent = '🗨️ ' + text;
+        list.appendChild(p);
+      });
+    }
+
+    function addReview() {
+      const input = document.getElementById('reviewInput');
+      const text = input.value.trim();
+      if (!text) return;
+      let reviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
+      reviews.push(text);
+      localStorage.setItem(reviewKey, JSON.stringify(reviews));
+      input.value = '';
+      loadReviews();
+    }
+
+    loadReviews();
+  </script>
 </body>
 </html>

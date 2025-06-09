@@ -215,7 +215,7 @@ body {
 
 .cart-item button {
   margin-top: 0.5rem;
-  background-color: #e07a5f;
+  background-color: #C8D5B9;
   color: #fff;
   padding: 5px 10px;
   border: none;
@@ -303,6 +303,28 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
+.cart-btn {
+  background-color: #9aaa89;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  min-width: 40px;
+  text-align: center;
+  padding: 0 12px;
+  margin: 4px;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.cart-btn:hover {
+  background-color: #9aaa89;
+}
+
 
 
 

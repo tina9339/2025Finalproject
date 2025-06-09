@@ -7,7 +7,7 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="logo"><a href="index.html">文青選品</a></div>
+    <div class="logo"><a href="index.html">未語知念</a></div>
     <nav>
       <ul class="menu">
         <li><a href="index.html">首頁</a></li>
@@ -23,7 +23,7 @@
   </main>
 
   <footer class="footer">
-    <p>© 2025 文青風生活選品店</p>
+    <p>© 2025 懂你所思，聽你未語。</p>
   </footer>
 
   <script>
@@ -45,9 +45,9 @@
           <div>
             <h4>${item.name}</h4>
             <p>$${item.price} × ${item.quantity} = $${itemTotal}</p>
-            <button onclick="decreaseQuantity(${index})">−</button>
-            <button onclick="increaseQuantity(${index})">＋</button>
-            <button onclick="removeItem(${index})">移除</button>
+            <button class="cart-btn" onclick="decreaseQuantity(${index})">−</button>
+            <button class="cart-btn" onclick="increaseQuantity(${index})">＋</button>
+            <button class="cart-btn" onclick="removeItem(${index})">移除</button>
           </div>
         `;
         container.appendChild(div);

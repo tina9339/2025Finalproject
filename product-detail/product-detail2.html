@@ -8,28 +8,28 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="logo"><a href="../index.html">文青選品</a></div>
+    <div class="logo"><a href="../index.html">未語知念</a></div>
     <nav>
       <ul class="menu">
         <li><a href="../index.html">首頁</a></li>
-        <li><a href="#">上衣</a></li>
-        <li><a href="#">褲子</a></li>
-        <li><a href="#">配件</a></li>
+        <li><a href="#">全新推出</a></li>
+        <li><a href="#">熱門推薦</a></li>
+        <li><a href="#">獨特愛好</a></li>
         <li><a href="#">登入</a></li>
-        <li><a href="cart.html">購物車</a></li>
+        <li><a href="../cart.html">購物車</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="product-detail">
     <div class="product-images">
-      <img src="/img/S__267386911.jpg" alt="商品主圖" />
+      <img src="../img/S__267386911.jpg" alt="商品主圖" />
     </div>
 
     <div class="product-info">
-      <h2>醫生 $0</h2>
-      <p class="price">跳樓打骨折!終身促銷!</p>
-      <p class="desc">每一個都是獨一無二的典獄長喔~歡迎找他吵架~</p>
+      <h2>蘇羿蓮（冷感醫生） $6000</h2>
+      <p class="price">她的話語不多，但每一次注視都像是手術刀般精準刺入你心。</p>
+      <p class="desc">你確定你只是來治病的，不是自願被她解剖嗎？</p>
       <button class="add-to-cart" id="addToCart">加入購物車</button>
       <script src="../cart.js"></script>
     </div>
@@ -37,11 +37,61 @@
 
   <section class="review-section">
     <h3>評論與評分</h3>
-    <p>（此區即將開放留言與評分功能）</p>
+
+    <div id="reviewList" class="review-list"></div>
+
+    <div class="review-form">
+      <textarea id="reviewInput" placeholder="留下你的評論吧..."></textarea>
+      <button onclick="addReview()">送出評論</button>
+    </div>
   </section>
 
+
   <footer class="footer">
-    <p>© 2025 文青風生活選品店</p>
+    <p>© 2025 懂你所思，聽你未語。</p>
   </footer>
+    <script>
+    const product = {
+      id: 'suyilian',
+      name: '蘇羿蓮',
+      price: 6000,
+      image: '../img/S__267386911.jpg',
+      quantity: 1
+    };
+
+    <script>
+  const productId = 'jiyaocing'; // 每個商品一個唯一 ID
+  const reviewKey = 'reviews_' + productId;
+
+  function loadReviews() {
+    const list = document.getElementById('reviewList');
+    const reviews = JSON.parse(localStorage.getItem(reviewKey)) || [
+      '霸氣又溫柔，好想被她罵（？）',
+      '紀總一句「留下」我直接原地結婚！',
+      '高傲冷艷氣場超強，心甘情願加班給她。'
+    ];
+    list.innerHTML = '';
+    reviews.forEach(text => {
+      const p = document.createElement('p');
+      p.textContent = '🗨️ ' + text;
+      list.appendChild(p);
+    });
+  }
+
+  function addReview() {
+    const input = document.getElementById('reviewInput');
+    const text = input.value.trim();
+    if (!text) return;
+    let reviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
+    reviews.push(text);
+    localStorage.setItem(reviewKey, JSON.stringify(reviews));
+    input.value = '';
+    loadReviews();
+  }
+
+  loadReviews();
+</script>
+
+  </script>
 </body>
 </html>
