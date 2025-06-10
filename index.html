@@ -11,21 +11,13 @@
 <body>
   <!-- 導覽列 -->
   <header class="navbar">
-    <div class="logo">未語知念</div>
-    <nav>
-      <ul class="menu">
-        <li><a href="#">首頁</a></li>
-        <li><a href="#1">全新推出</a></li>
-        <li><a href="#2">熱門推薦</a></li>
-        <li><a href="#3">獨特愛好</a></li>
-        <li><a href="login.html">登入</a></li>
-        <li><a href="register.html">註冊</a></li>
-        <li><a href="cart.html">購物車</a></li>
-        <li><a href="member-profile.html">會員</a></li>
-
-      </ul>
-    </nav>
-  </header>
+  <div class="logo">未語知念</div>
+  <nav>
+    <ul class="menu" id="navMenu">
+      <!-- JS 會動態填充這裡 -->
+    </ul>
+  </nav>
+</header>
 
   <!-- 動態廣告 Banner -->
   <section class="banner">
@@ -225,6 +217,89 @@
     mytimer = setTimeout(() => autoplay(false), 5000);
   }
 </script>
+<script>
+  function renderNav() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.innerHTML = ''; // 清空
+
+    const loggedIn = localStorage.getItem('loggedIn');
+    const username = localStorage.getItem('username');
+
+    if (loggedIn === 'true' && username) {
+      // 已登入顯示：首頁 / 全新推出 / 熱門推薦 / 獨特愛好 / 購物車 / 會員 / 歡迎+登出
+      const links = [
+        { text: '首頁', href: '#' },
+        { text: '全新推出', href: '#1' },
+        { text: '熱門推薦', href: '#2' },
+        { text: '獨特愛好', href: '#3' },
+        { text: '購物車', href: 'cart.html' },
+        { text: '會員', href: 'member-profile.html' },
+      ];
+
+      links.forEach(link => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.textContent = link.text;
+        li.appendChild(a);
+        navMenu.appendChild(li);
+      });
+
+      // 歡迎訊息
+      const welcomeLi = document.createElement('li');
+      welcomeLi.textContent = `歡迎，${username}`;
+      welcomeLi.style.color = '#fff';
+      welcomeLi.style.fontWeight = 'bold';
+      welcomeLi.style.marginLeft = '10px';
+      navMenu.appendChild(welcomeLi);
+
+      // 登出按鈕（放在 li 裡）
+      const logoutLi = document.createElement('li');
+      const logoutBtn = document.createElement('button');
+      logoutBtn.textContent = '登出';
+      logoutBtn.style.background = 'transparent';
+      logoutBtn.style.border = '1px solid white';
+      logoutBtn.style.color = 'white';
+      logoutBtn.style.padding = '3px 8px';
+      logoutBtn.style.borderRadius = '4px';
+      logoutBtn.style.cursor = 'pointer';
+      logoutBtn.style.fontWeight = 'bold';
+      logoutBtn.onclick = () => {
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('username');
+        renderNav();
+      };
+      logoutLi.appendChild(logoutBtn);
+      navMenu.appendChild(logoutLi);
+
+    } else {
+      // 未登入顯示：首頁 / 全新推出 / 熱門推薦 / 獨特愛好 / 登入 / 註冊 / 購物車 / 會員（這裡會員也可以隱藏）
+      const links = [
+        { text: '首頁', href: '#' },
+        { text: '全新推出', href: '#1' },
+        { text: '熱門推薦', href: '#2' },
+        { text: '獨特愛好', href: '#3' },
+        { text: '登入', href: 'login.html' },
+        { text: '註冊', href: 'register.html' },
+        { text: '購物車', href: 'cart.html' },
+        
+      ];
+
+      links.forEach(link => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.textContent = link.text;
+        li.appendChild(a);
+        navMenu.appendChild(li);
+      });
+    }
+  }
+
+  // 載入完頁面後渲染導覽列
+  document.addEventListener('DOMContentLoaded', renderNav);
+</script>
+
 
 </body>
 </html>

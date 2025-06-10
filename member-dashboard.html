@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>會員中心</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f7f4;
+    }
+
+    .dashboard {
+      max-width: 900px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .welcome {
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      object-fit: cover;
+    }
+
+    .welcome h2 {
+      margin: 0;
+      color: #333;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .menu button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #f0eae1;
+      color: #333;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu button:hover {
+      background-color: #e0d7cb;
+    }
+
+    .info-section {
+      background-color: #fefcf8;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+    }
+
+    .info-section p {
+      margin: 0.5rem 0;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .logout {
+      margin-top: 2rem;
+      text-align: right;
+    }
+
+    .logout button {
+      background-color: #ffdddd;
+      color: #900;
+    }
+
+    .logout button:hover {
+      background-color: #fbb;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">未語知念</div>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="cart.html">購物車</a></li>
+        <li><a href="member-profile.html">會員</a></li>
+
+      </ul>
+    </nav>
+  </header>
+    <script>
+  if (localStorage.getItem("loggedIn") !== "true") {
+    alert("請先登入！");
+    window.location.href = "login.html";
+  }
+</script>
+
+  <div class="dashboard">
+    <div class="welcome">
+      <img class="avatar" src="/img/242906.jpg" alt="會員頭像">
+      <h2>歡迎回來，<span id="userName"></span>！</h2>
+
+    </div>
+    
+
+    <div class="menu">
+      <button onclick="showInfo()">個人資料</button>
+      <button onclick="showOrders()">歷史訂單</button>
+      <button onclick="editProfile()">編輯資料</button>
+    </div>
+
+    <div class="info-section" id="mainContent">
+      <p><span class="label">姓名：</span>王小明</p>
+      <p><span class="label">Email：</span>ming@example.com</p>
+      <p><span class="label">電話：</span>0912-345-678</p>
+      <p><span class="label">會員等級：</span>黃金會員</p>
+    </div>
+
+    <div class="logout">
+      <button onclick="logout()">登出</button>
+    </div>
+
+  </div>
+  <script>
+    document.getElementById("userName").textContent = localStorage.getItem("username");
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    }
+  </script>
+  <script>
+    function showInfo() {
+      document.getElementById("mainContent").innerHTML = `
+        <p><span class="label">姓名：</span>王小明</p>
+        <p><span class="label">Email：</span>ming@example.com</p>
+        <p><span class="label">電話：</span>0912-345-678</p>
+        <p><span class="label">會員等級：</span>黃金會員</p>
+      `;
+    }
+
+    function showOrders() {
+      document.getElementById("mainContent").innerHTML = `
+        <p><span class="label">2025/06/01：</span>購買「典獄長」 - NT$10</p>
+        <p><span class="label">2025/06/03：</span>購買「教授」 - NT$9999</p>
+      `;
+    }
+
+    function editProfile() {
+      document.getElementById("mainContent").innerHTML = `
+        <p><label>姓名：<input type="text" value="王小明"></label></p>
+        <p><label>Email：<input type="email" value="ming@example.com"></label></p>
+        <p><label>電話：<input type="tel" value="0912-345-678"></label></p>
+        <p><button>儲存變更</button></p>
+      `;
+    }
+
+    function logout() {
+      alert("你已成功登出！");
+      window.location.href = "login.html"; // 回登入頁
+    }
+
+    function logout() {
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("username");
+  window.location.href = "login.html";
+}
+
+  </script>
+</body>
+</html>

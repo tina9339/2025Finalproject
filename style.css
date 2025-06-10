@@ -322,9 +322,23 @@ body {
 }
 
 .cart-btn:hover {
-  background-color: #9aaa89;
+  background-color: #73956f;
 }
 
+/*不知名*/
+button {
+  padding: 0.5rem 1rem;
+  background-color: #aa4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: #882222;
+}
 
 
 
