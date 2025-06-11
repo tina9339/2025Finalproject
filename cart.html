@@ -41,7 +41,7 @@
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-          <img src="${item.image}" alt="${item.name}">
+          <img src="${item.image}" alt="${item.name}" style="width:100px;height:auto;">
           <div>
             <h4>${item.name}</h4>
             <p>$${item.price} × ${item.quantity} = $${itemTotal}</p>
@@ -64,7 +64,7 @@
       if (cart[index].quantity > 1) {
         cart[index].quantity -= 1;
       } else {
-        cart.splice(index, 1); // 數量為 1 再減就刪除
+        cart.splice(index, 1);
       }
       updateCart();
     }
@@ -80,7 +80,7 @@
     }
 
     renderCart();
-</script>
+  </script>
 
 </body>
 </html>
