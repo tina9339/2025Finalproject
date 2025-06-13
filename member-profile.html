@@ -63,7 +63,7 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">未語知念</div>
+    <div class="logo"><a href="index.html">未語知念</a></div>
     <nav>
       <ul class="menu">
         <li><a href="index.html">首頁</a></li>
@@ -81,10 +81,7 @@
 
     <div class="section">
       <h2>歷史消費紀錄</h2>
-      <ul class="record">
-        <li>2025/06/01 - 購買「典獄長」 - $10</li>
-        <li>2025/06/03 - 購買「教授」 - $9999</li>
-      </ul>
+      <div id="mainContent" class="record"></div>
     </div>
 
     <div class="section">
@@ -95,5 +92,52 @@
       </ul>
     </div>
   </div>
+  <div class="section" style="text-align: center; margin-top: 2rem;">
+    <a href="member-dashboard.html">
+      <button style="
+        padding: 10px 24px;
+        background-color: #9AAA89;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      " onmouseover="this.style.backgroundColor='#73956F'" onmouseout="this.style.backgroundColor='#9AAA89'">
+        修改資料
+      </button>
+    </a>
+  </div>
+  <footer class="footer">
+    <p>© 2025 懂你所思，聽你未語。</p>
+  </footer>  
+  <script>
+  function showOrders() {
+    const history = JSON.parse(localStorage.getItem('orderHistory')) || [];
+    const container = document.getElementById("mainContent");
+
+    if (!container) return;
+
+    if (history.length === 0) {
+      container.innerHTML = "<li>目前沒有訂單紀錄。</li>";
+      return;
+    }
+
+    let html = '';
+    history.forEach(order => {
+      html += `<li><strong>日期：</strong>${order.date}<br>`;
+      order.items.forEach(item => {
+        html += `${item.name} × ${item.quantity} = $${item.price * item.quantity}<br>`;
+      });
+      html += `<strong>總金額：</strong>$${order.total}</li>`;
+    });
+
+    container.innerHTML = html;
+  }
+
+  // 進入頁面時自動執行
+  window.onload = showOrders;
+</script>
+
 </body>
 </html>
