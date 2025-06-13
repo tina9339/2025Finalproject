@@ -143,5 +143,14 @@
   <footer class="footer">
     <p>© 2025 懂你所思，聽你未語。</p>
   </footer>  
+  <script>
+  // 如果從 confirm.html 返回時帶有參數，就預填回輸入欄
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("name").value = params.get("name") || "";
+  document.getElementById("phone").value = params.get("phone") || "";
+  document.getElementById("card").value = params.get("card") || "";
+  document.getElementById("security").value = params.get("security") || "";
+</script>
+
 </body>
 </html>

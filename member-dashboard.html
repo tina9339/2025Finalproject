@@ -94,47 +94,41 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo"><a href="index.html">未語知念</a></div>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">首頁</a></li>
-        <li><a href="cart.html">購物車</a></li>
-        <li><a href="member-profile.html">會員</a></li>
-
-      </ul>
-    </nav>
-  </header>
-    <script>
-  if (localStorage.getItem("loggedIn") !== "true") {
-    alert("請先登入！");
-    window.location.href = "login.html";
-  }
-</script>
-
-  <div class="dashboard">
-    <div class="welcome">
-      <img class="avatar" src="./img/242906.jpg" alt="會員頭像">
-      <h2>歡迎回來，<span id="userName"></span>！</h2>
-
-    </div>
+  <div class="wrapper">
+    <header class="navbar">
+      <div class="logo"><a href="index.html">未語知念</a></div>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="cart.html">購物車</a></li>
+          <li><a href="member-profile.html">會員</a></li>
+        </ul>
+      </nav>
+    </header>
+      <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      alert("請先登入！");
+      window.location.href = "login.html";
+    }
+    </script>
+    <div class="dashboard">
+      <div class="welcome">
+        <img class="avatar" src="./img/242906.jpg" alt="會員頭像">
+        <h2>歡迎回來，<span id="userName"></span>！</h2>
+      </div>
     
-
-    <div class="menu">
-      <button onclick="showInfo()">個人資料</button>
-      <button onclick="showOrders()">歷史訂單</button>
-      <button onclick="editProfile()">編輯資料</button>
+      <div class="menu">
+        <button onclick="showInfo()">個人資料</button>
+        <button onclick="showOrders()">歷史訂單</button>
+        <button onclick="editProfile()">編輯資料</button>
+      </div>
+      <div class="info-section" id="mainContent">
+        <!-- 使用者資料會透過 JS 自動填入 -->
+      </div>
+      <div class="logout">
+        <button onclick="logout()">登出</button>
+      </div>
     </div>
-
-    <div class="info-section" id="mainContent">
-      <!-- 使用者資料會透過 JS 自動填入 -->
-    </div>
-
-
-    <div class="logout">
-      <button onclick="logout()">登出</button>
-    </div>
-
   </div>
   <footer class="footer">
     <p>© 2025 懂你所思，聽你未語。</p>

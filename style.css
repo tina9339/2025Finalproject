@@ -3,8 +3,20 @@ body {
   font-family: 'Noto Serif TC', serif;
   background-color: #FAF3E0;
   color: #333;
+
+
+   display: flex;
+  flex-direction: column;
+}
+.wrapper {
+  flex: 1;
 }
 
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Noto Serif TC', serif;
+}
 .navbar {
   display: flex;
   justify-content: space-between;

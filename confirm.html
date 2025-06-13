@@ -100,6 +100,13 @@
       <div id="cartItems"></div>
       <p><strong>總金額：</strong><span id="total"></span></p>
     </div>
+    <p style="text-align: center; margin-top: 30px;">
+    <button onclick="goBackToEdit()">返回修改</button>
+    </p>
+    <p style="text-align: center; margin-top: 10px;">
+    <button onclick="confirmAndProceed()">確認送出</button>
+    </p>
+
   </main>
 
   <footer class="footer">
@@ -142,6 +149,19 @@
         let history = JSON.parse(localStorage.getItem('orderHistory')) || [];
         history.push(order);
         localStorage.setItem('orderHistory', JSON.stringify(history));
+        function goBackToEdit() {
+            const name = encodeURIComponent(document.getElementById('name').textContent);
+            const phone = encodeURIComponent(document.getElementById('phone').textContent);
+            const card = encodeURIComponent(document.getElementById('card').textContent);
+            const security = encodeURIComponent(document.getElementById('security').textContent);
+
+            // 導回 checkout.html 並附上 query string 資料
+            window.location.href = `checkout.html?name=${name}&phone=${phone}&card=${card}&security=${security}`;
+        }
+
+        function confirmAndProceed() {
+        window.location.href = "success.html";
+        }
 
   </script>
 </body>

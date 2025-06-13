@@ -93,24 +93,25 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo"><a href="index.html">未語知念</a></div>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">首頁</a></li>
-        <li><a href="cart.html">購物車</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <form class="login-form" onsubmit="login(event)">
-    <h2>會員登入</h2>
-    <input type="text" id="username" placeholder="帳號" required />
-    <input type="password" id="password" placeholder="密碼" required />
-    <button type="submit">登入</button>
-    <p class="error" id="errorMsg"></p>
-    <p><a href="register.html">還沒有帳號嗎？點此註冊</a></p>
-  </form>
+  <div class="wrapper">
+    <header class="navbar">
+      <div class="logo"><a href="index.html">未語知念</a></div>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="cart.html">購物車</a></li>
+        </ul>
+      </nav>
+    </header>
+    <form class="login-form" onsubmit="login(event)">
+      <h2>會員登入</h2>
+      <input type="text" id="username" placeholder="帳號" required />
+      <input type="password" id="password" placeholder="密碼" required />
+      <button type="submit">登入</button>
+      <p class="error" id="errorMsg"></p>
+      <p><a href="register.html">還沒有帳號嗎？點此註冊</a></p>
+    </form>
+  </div>
 
   <footer class="footer">
     <p>© 2025 懂你所思，聽你未語。</p>
